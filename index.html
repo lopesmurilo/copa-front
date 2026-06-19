@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado da Copa ⚽ Premium</title>
+    <meta name="description" content="Brechó de relíquias esportivas clássicas.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================
+           DESIGN SYSTEM — DARK PREMIUM
+        ========================================== */
+        :root {
+            --bg-base: #0f172a;
+            --bg-surface: #1e293b;
+            --bg-surface-hover: #334155;
+            
+            --accent-primary: #3b82f6; /* Azul moderno */
+            --accent-glow: rgba(59, 130, 246, 0.5);
+            --accent-secondary: #10b981; /* Verde esmeralda */
+            
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            
+            --border-light: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            
+            --success: #10b981;
+            --error: #ef4444;
+            --info: #3b82f6;
+
+            --shadow-float: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-full: 999px;
+            
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ==========================================
+           RESET & TYPOGRAPHY
+        ========================================== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-base);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        img { max-width: 100%; display: block; border-radius: var(--radius-md); }
+        button { cursor: pointer; font-family: inherit; border: none; background: none; color: inherit; }
+
+        /* ==========================================
+           HEADER GLASSMORPHISM
+        ========================================== */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-title {
+            font-weight: 800;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+        .logo-title .emoji-ball {
+            background: var(--bg-surface);
+            padding: 6px;
+            border-radius: var(--radius-full);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+        .logo-subtitle { display: none; } /* Visual mais limpo, ocultando subtítulo no topo */
+
+        .cart-btn {
+            position: relative;
+            background: var(--bg-surface);
+            padding: 10px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
+        .cart-btn:hover { background: var(--bg-surface-hover); transform: translateY(-2px); }
+        .cart-badge {
+            position: absolute;
+            top: -5px; right: -5px;
+            background: var(--accent-primary);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            width: 22px; height: 22px;
+            border-radius: var(--radius-full);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
+        /* ==========================================
+           MAIN CONTENT & HERO
+        ========================================== */
+        .main-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            flex-grow: 1;
+        }
+        .hero {
+            background: linear-gradient(135deg, var(--bg-surface) 0%, #1e1b4b 100%);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            position: relative;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-float);
+            margin-bottom: 3rem;
+            overflow: hidden;
+        }
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-desc { color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; max-width: 500px; }
+        .hero-badge { display: inline-block; padding: 6px 12px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 600; margin-bottom: 1rem;}
+
+        /* ==========================================
+           FILTERS
+        ========================================== */
+        .filters-row { display: flex; gap: 10px; margin-bottom: 2rem; overflow-x: auto; padding-bottom: 5px; }
+        .filter-btn {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            color: var(--text-muted);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .filter-btn:hover { background: var(--bg-surface-hover); color: var(--text-main); }
+        .filter-btn.active {
+            background: var(--accent-primary);
+            color: #fff;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* ==========================================
+           PRODUCTS GRID & CARDS
+        ========================================== */
+        .products-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .products-title { font-size: 1.5rem; font-weight: 700; }
+        .realtime-badge { background: rgba(16, 185, 129, 0.1); color: var(--accent-secondary); padding: 5px 12px; border-radius: var(--radius-full); font-size: 0.8rem; display: flex; align-items: center; gap: 6px;}
+        .realtime-dot { width: 8px; height: 8px; background: var(--accent-secondary); border-radius: 50%; box-shadow: 0 0 8px var(--accent-secondary); animation: pulse 2s infinite; }
+
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+        
+        .product-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover { transform: translateY(-5px); border-color: var(--border-hover); box-shadow: var(--shadow-float); }
+        .card-image-wrapper { position: relative; padding-bottom: 100%; background: #000; }
+        .card-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: var(--transition); }
+        .product-card:hover .card-image { opacity: 1; transform: scale(1.05); }
+        .card-category-badge { position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); padding: 4px 10px; border-radius: var(--radius-md); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+        
+        .card-body { padding: 1.2rem; display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
+        .card-title { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
+        .card-desc { font-size: 0.85rem; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 15px; border-top: 1px solid var(--border-light); }
+        .card-price { font-size: 1.2rem; font-weight: 800; color: var(--accent-secondary); }
+        .add-cart-btn {
+            background: var(--accent-primary);
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .add-cart-btn:hover { background: #2563eb; box-shadow: 0 4px 12px var(--accent-glow); }
+
+        /* ==========================================
+           DRAWER (CARRINHO) & TOASTS
+        ========================================== */
+        .cart-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+            opacity: 0; visibility: hidden; transition: var(--transition); z-index: 200;
+        }
+        .cart-overlay.open { opacity: 1; visibility: visible; }
+        .cart-drawer {
+            position: fixed; top: 0; right: 0; bottom: 0; width: 100%; max-width: 400px;
+            background: var(--bg-surface); z-index: 300; transform: translateX(100%);
+            transition: var(--transition); display: flex; flex-direction: column;
+            border-left: 1px solid var(--border-light);
+        }
+        .cart-drawer.open { transform: translateX(0); }
+        
+        .drawer-header { padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light); background: var(--bg-base); }
+        .drawer-title { font-size: 1.2rem; font-weight: 700; }
+        .close-btn { font-size: 1.5rem; color: var(--text-muted); }
+        .close-btn:hover { color: var(--text-main); }
+        
+        .drawer-body { flex-grow: 1; padding: 1.5rem; overflow-y: auto; }
+        .cart-items { display: flex; flex-direction: column; gap: 15px; }
+        
+        .toast-container { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 999; }
+        .toast { padding: 12px 20px; border-radius: var(--radius-md); background: var(--bg-surface); border-left: 4px solid; color: var(--text-main); box-shadow: var(--shadow-float); display: flex; gap: 10px; align-items: center; font-weight: 500; animation: slideIn 0.3s forwards; }
+        .toast.success { border-color: var(--success); }
+        .toast.error { border-color: var(--error); }
+        .toast.info { border-color: var(--info); }
+        
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        
+        /* Checkouts e afins manteriam a mesma classe mas adotam essas variaveis de cor nativamente */
+        input { width: 100%; padding: 12px; background: var(--bg-base); border: 1px solid var(--border-light); color: var(--text-main); border-radius: var(--radius-md); margin-top: 5px; }
+        label { font-size: 0.85rem; color: var(--text-muted); }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo-group">
+                <span class="logo-title"><span class="emoji-ball">⚽</span> Mercado da Copa</span>
+            </div>
+            <button class="cart-btn" onclick="toggleCarrinho()">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="24" height="24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0L5 21h14"></path></svg>
+                <span class="cart-badge" id="carrinho-badge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero">
+            <span class="hero-badge">Estilo Premium</span>
+            <h1 class="hero-title">Relíquias Históricas do Futebol</h1>
+            <p class="hero-desc">Encontre as camisas, casacos e bonés mais icônicos de todas as Copas do Mundo em um só lugar.</p>
+        </section>
+
+        <section class="filters-section">
+            <div class="filters-row">
+                <button class="filter-btn active" onclick="filtrarPorCategoria('todos', this)">Todos</button>
+                <button class="filter-btn" onclick="filtrarPorCategoria('camisa', this)">Camisas</button>
+                <button class="filter-btn" onclick="filtrarPorCategoria('casaco', this)">Casacos</button>
+                <button class="filter-btn" onclick="filtrarPorCategoria('bone', this)">Bonés</button>
+            </div>
+        </section>
+
+        <section class="products-section">
+            <div class="products-header">
+                <h2 class="products-title">Catálogo</h2>
+                <span class="realtime-badge"><span class="realtime-dot"></span> Atualização Ao Vivo</span>
+            </div>
+            <div class="products-grid" id="grid-produtos">
+                </div>
+        </section>
+    </main>
+
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCarrinho()"></div>
+    <aside class="cart-drawer" id="cart-drawer">
+        <div class="drawer-header">
+            <h3 class="drawer-title">Seu Carrinho <span class="drawer-count" id="drawer-count">0</span></h3>
+            <button class="close-btn" onclick="toggleCarrinho()">&times;</button>
+        </div>
+        <div class="drawer-body" id="cart-items">
+            </div>
+        <div class="drawer-footer" id="cart-footer">
+            </div>
+    </aside>
+
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
